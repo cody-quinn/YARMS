@@ -1,0 +1,58 @@
+{% extends "admin/base.html.j2" %}
+
+{% block admin_content %}
+<h3>Create repository</h3>
+<form action="/admin/repositories/create" id="create_repository_form" method="post" class="standard">
+  <section>
+    <span class="label">Name</span>
+    <input type="text" name="name" id="name" placeholder="Repository Name" autocomplete="off">
+    <span class="error-message" id="name_error"></span>
+  </section>
+
+  <section>
+    <span class="label">Layout</span>
+    <select name="layout" id="layout">
+      <option value="Generic">Generic</option>
+      <option value="Maven">Maven</option>
+    </select>
+    <a href="#">Unsure?</a>
+  </section>
+
+  <section id="layout_specific"></section>
+
+  <section id="type_section">
+    <span class="label">Type</span>
+    <div>
+      <input type="radio" name="type" id="type_hosted" value="Hosted">
+      <label for="type_hosted">Hosted</label>
+    </div>
+    <div>
+      <input type="radio" name="type" id="type_group" value="Group">
+      <label for="type_group">Group</label>
+    </div>
+    <div>
+      <input type="radio" name="type" id="type_proxy" value="Proxy">
+      <label for="type_proxy">Proxy</label>
+    </div>
+  </section>
+
+  <section id="type_specific"></section>
+
+  <section>
+    <span class="label">Visibility</span>
+    <div>
+      <input type="checkbox" name="allow_anonymous_reads" id="allow_anonymous_reads">
+      <label for="allow_anonymous_reads">Allow anonymous reads</label>
+    </div>
+    <div>
+      <input type="checkbox" name="allow_anonymous_writes" id="allow_anonymous_writes">
+      <label for="allow_anonymous_writes">Allow anonymous writes</label>
+    </div>
+  </section>
+  <input type="submit" value="Create Repository">
+</form>
+{% endblock admin_content %}
+
+{% block body_extras %}
+<script src="/assets/create_repository.bundle.js"></script>
+{% endblock body_extras %}

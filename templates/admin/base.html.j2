@@ -1,0 +1,18 @@
+{% extends "base.html.j2" %}
+
+{% block content %}
+<div class="admin-page">
+  <div class="admin-menu">
+    <h3>Admin</h3>
+    <ul>
+      <li><a href="/admin">Dashboard</a></li>
+      <li><a href="/admin/repositories">Repositories</a></li>
+      <li><a href="/admin/users">Users</a></li>
+      <li><a href="/admin/settings">Settings</a></li>
+    </ul>
+  </div>
+  <div class="admin-content">
+    {% block admin_content %}{% endblock admin_content %}
+  </div>
+</div>
+{% endblock content %}

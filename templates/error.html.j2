@@ -1,0 +1,10 @@
+{% extends "base.html.j2" %}
+
+{% block content %}
+<section class="center-aligned">
+  <h3>Error {{ status_code }}</h3>
+  <span>{{ message }}</span>
+</section>
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}

@@ -1,0 +1,16 @@
+[package]
+name = "yarms-migration"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+name = "migration"
+path = "src/lib.rs"
+
+[dependencies]
+yarms-entity = { path = "../entity" }
+yarms-security = { path = "../security" }
+
+chrono = "0.4.19"
+sea-orm-migration = "^0.8.0"

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block header %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/stylesheet.css" />
+    {% block header_extras %}{% endblock header_extras %}
+    <title>YARMS</title>
+    {% endblock header %}
+  </head>
+  <body>
+    <header>
+      <h1>YARMS</h1>
+      <h4>yet another repo management system</h4>
+      {% block flash %}
+      {% if flash_message %}
+      <p class="flash-message">{{ flash_message }}</p>
+      {% endif %}
+      {% endblock flash %}
+    </header>
+    <hr />
+    <article>{% block content %}{% endblock content %}</article>
+    <hr />
+    <footer>
+      {% block footer %}
+      <form action="/logout" method="post" id="logout-form"></form>
+      <nav>
+        <a href="/">home</a>
+        {% if user %}
+        <a href="/account">account</a>
+        {% if user.is_admin %}
+        <a href="/admin">admin</a>
+        {% endif %}
+        <a href="#" onclick="document.getElementById('logout-form').submit();">logout</a>
+        {% else %}
+        <a href="/login">login</a>
+        {% endif %}
+        <a href="https://github.com/YARMSProject">source</a>
+        <a href="https://yarmsproject.github.io">docs</a>
+      </nav>
+      {% if user -%}
+      <span>Logged in as {{ user.username }}</span>
+      {%- endif %}
+      {% endblock footer %}
+    </footer>
+    {% block body_extras %}{% endblock body_extras %}
+  </body>
+</html>

@@ -1,0 +1,32 @@
+{% extends "base.html.j2" %}
+
+{% block content %}
+<p>
+  Welcome to YARMS! I made YARMS because I was fed up with all the other repository management
+  software out there. Every one I used either didn't work, was bloated, was closed source, took up a
+  rediculous amount of server resources or had some other issues. They often had too many confusing
+  options or features I didn't need while lacking ones I did.
+</p>
+<p>
+  Compared to the solutions I have used in the past, YARMS is a easy to deploy, lightweight, open
+  source repository management solution.
+</p>
+<section>
+  <table class="directory directory-repositories">
+    <thead>
+      <tr>
+        <td class="column-name"><b>Name</b></td>
+        <td class="column-access"><b>Access</b></td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for repository in repositories %}
+      <tr>
+        <td class="column-name"><a href="/{{ repository.name }}">{{ repository.name }}</a></td>
+        <td class="column-access"></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock content %}

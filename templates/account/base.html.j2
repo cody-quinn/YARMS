@@ -1,0 +1,17 @@
+{% extends "base.html.j2" %}
+
+{% block content %}
+<div class="account-page">
+  <div class="account-menu">
+    <h3>Account</h3>
+    <ul>
+      <li><a href="/account">Dashboard</a></li>
+      <li><a href="/account/change_password">Change Password</a></li>
+      <li><a href="#">API Tokens</a></li>
+    </ul>
+  </div>
+  <div class="account-content">
+    {% block account_content %}{% endblock account_content %}
+  </div>
+</div>
+{% endblock content %}

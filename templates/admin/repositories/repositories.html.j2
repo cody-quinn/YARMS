@@ -1,0 +1,30 @@
+{% extends "admin/base.html.j2" %}
+
+{% block admin_content %}
+<h3>Repositories</h3>
+<section></section>
+<table class="admin-repositories-table">
+  <thead>
+    <tr>
+      <td class="column-name"><b>Name</b></td>
+      <td class="column-actions right-aligned"><b>Actions</b></td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for repository in repositories %}
+    <tr>
+      <td class="column-name">{{ repository.name }}</td>
+      <td class="column-actions right-aligned">
+        <a href="/admin/repositories/{{ repository.name }}">Manage</a>
+      </td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td class="column-name"></td>
+      <td class="column-actions right-aligned">
+        <a href="/admin/repositories/create">Create Repo</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{% endblock admin_content %}

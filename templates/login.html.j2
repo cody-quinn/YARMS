@@ -1,0 +1,14 @@
+{% extends "base.html.j2" %}
+
+{% block content %}
+<form action="/login" method="post" class="standard center-aligned hidden-labels">
+  <section>
+    <h3>Login</h3>
+    <label for="username">username</label>
+    <input type="text" name="username" id="username" placeholder="username">
+    <label for="password">password</label>
+    <input type="password" name="password" id="password" placeholder="password">
+    <input type="submit" value="Login">
+  </section>
+</form>
+{% endblock content %}
