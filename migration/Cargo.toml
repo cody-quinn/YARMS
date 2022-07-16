@@ -14,3 +14,4 @@ yarms-security = { path = "../security" }
 
 chrono = "0.4.19"
 sea-orm-migration = "^0.8.0"
+async-std = "1.12.0"

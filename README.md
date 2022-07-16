@@ -14,12 +14,13 @@ Before you can start building YARMS you must make sure you have the following so
 
 1. Run `yarn build:development` to build the frontend code
 2. Run `cargo build` to build the backend (or `cargo run` to build & run it)
-3. The final built binary will be located at `./target/debug/yarms`.
+3. The final built binary will be located at `./target/debug/yarms`
 
 #### 🌐 Building for a production environment
 
-1. Run `cargo build --release`. This will automatically run the proper yarn command to build for produciton.
-2. The final built binary will be located at `./target/release/yarms`.
+1. Run `yarn build:production` to build the frontend code
+2. Run `cargo build --release` to build the backend (or `cargo run --release` to build & run it)
+3. The final built binary will be located at `./target/release/yarms`
 
 ## ⚖️ License
 
