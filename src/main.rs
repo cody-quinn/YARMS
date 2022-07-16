@@ -1,5 +1,4 @@
 pub mod controller;
-pub mod middlewares;
 pub mod utils;
 pub mod error;
 
