@@ -96,5 +96,6 @@ to_yarms_error!(pbkdf2::password_hash::Error, |_| YarmsError::Internal);
 to_yarms_error!(sea_orm::DbErr, YarmsError::InternalDatabase);
 to_yarms_error!(tera::Error, |_| YarmsError::InternalTemplate);
 to_yarms_error!(std::num::ParseIntError, |_| YarmsError::Internal);
+to_yarms_error!(serde_json::Error, |_| YarmsError::Internal);
 
 pub type YarmsResult<T> = std::result::Result<T, YarmsError>;

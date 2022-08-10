@@ -1,6 +1,7 @@
 use sea_orm::{entity::*, DatabaseConnection};
 use actix_web::{HttpResponse, web, get};
 use actix_identity::Identity;
+use serde::Deserialize;
 use tera::Tera;
 
 use entity::repository;
@@ -32,6 +33,54 @@ async fn index(
 
     render_html_template(&template_engine, "index.html.j2", &context)
 }
+
+#[derive(Deserialize)]
+struct RepoIndexPath {
+    repository: String,
+}
+
+#[get("/repo/{repository}")]
+async fn repo_index(
+    identity: Identity,
+    template_engine: web::Data<Tera>,
+    database_connection: web::Data<DatabaseConnection>,
+    path: web::Path<RepoIndexPath>,
+) -> YarmsResult<HttpResponse> {
+    let context = context!();
+
+    let current_user = optional_current_user(&identity, &database_connection).await?;
+    if let Some(current_user) = &current_user {
+        redirect_for_required_password_change!(&current_user);
+    }
+
+    render_html_template(&template_engine, "index.html.j2", &context)
+}
+
+#[derive(Deserialize)]
+struct RepoGetPath {
+    repository: String,
+    path: String,
+}
+
+#[get("/repo/{repository}/{path}")]
+async fn repo_get(
+    identity: Identity,
+    template_engine: web::Data<Tera>,
+    database_connection: web::Data<DatabaseConnection>,
+    path: web::Path<RepoGetPath>,
+) -> YarmsResult<HttpResponse> {
+    let context = context!();
+
+    let current_user = optional_current_user(&identity, &database_connection).await?;
+    if let Some(current_user) = &current_user {
+        redirect_for_required_password_change!(&current_user);
+    }
+
+    render_html_template(&template_engine, "index.html.j2", &context)
+}
+
+// #[put("/repo/{repository}/{path}")]
+// #[delete("/repo/{repository}/{path}")]
 
 pub fn init(cfg: &mut web::ServiceConfig) {
     cfg.service(index);

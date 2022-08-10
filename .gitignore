@@ -4,6 +4,7 @@ target/
 yarms.db
 yarms.db-shm
 yarms.db-wal
+data/
 
 # Logs
 logs

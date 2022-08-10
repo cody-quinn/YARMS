@@ -21,7 +21,11 @@ pub struct Model {
 #[serde(tag = "type")]
 pub enum RepoLayout {
     Generic,
-    Maven,
+    Maven {
+        enforce_layout: bool,
+        allow_snapshots: bool,
+        allow_releases: bool,
+    },
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]

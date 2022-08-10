@@ -1,12 +1,41 @@
+import { queryFormRadiosByName } from "./query";
+
 export type bindedValue<T, V> = [() => V, (value: V) => void, T];
 
-export const bindFormElement = <T extends HTMLInputElement>(element: T): bindedValue<T, string> => {
+export const bindFormElement = <T extends HTMLInputElement | HTMLSelectElement>(element: T): bindedValue<T, string> => {
   return [
     () => {
       return element.value;
     },
     (value: string) => {
       element.value = value;
+    },
+    element,
+  ];
+};
+
+export const bindRadioGroup = (name: string): bindedValue<Array<HTMLInputElement>, string> => {
+  const radios = queryFormRadiosByName(name);
+
+  return [
+    () => {
+      return radios.filter((el) => el.checked)[0].value;
+    },
+    (value: string) => {
+      radios.filter((el) => el.checked)[0].checked = false;
+      radios.filter((el) => el.value == value)[0].checked = true;
+    },
+    radios,
+  ];
+};
+
+export const bindFormButtonElement = <T extends HTMLInputElement>(element: T): bindedValue<T, boolean> => {
+  return [
+    () => {
+      return element.checked;
+    },
+    (value: boolean) => {
+      element.checked = value;
     },
     element,
   ];
